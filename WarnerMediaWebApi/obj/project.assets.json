@@ -7406,11 +7406,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\GitHub\\WarnerMedia\\WarnerMediaWebApi\\WarnerMediaWebApi.csproj",
+      "projectUniqueName": "C:\\GitHub Projects\\WMTitleSearchApi\\WarnerMediaWebApi\\WarnerMediaWebApi.csproj",
       "projectName": "WarnerMediaWebApi",
-      "projectPath": "C:\\GitHub\\WarnerMedia\\WarnerMediaWebApi\\WarnerMediaWebApi.csproj",
+      "projectPath": "C:\\GitHub Projects\\WMTitleSearchApi\\WarnerMediaWebApi\\WarnerMediaWebApi.csproj",
       "packagesPath": "C:\\Users\\ajayj\\.nuget\\packages\\",
-      "outputPath": "C:\\GitHub\\WarnerMedia\\WarnerMediaWebApi\\obj\\",
+      "outputPath": "C:\\GitHub Projects\\WMTitleSearchApi\\WarnerMediaWebApi\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\ajayj\\AppData\\Roaming\\NuGet\\NuGet.Config",

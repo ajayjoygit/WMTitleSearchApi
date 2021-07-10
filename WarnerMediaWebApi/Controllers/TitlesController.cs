@@ -18,7 +18,6 @@ namespace WarnerMediaWebApi.Controllers
     [ApiController]
     public class TitlesController : ControllerBase
     {
-        private readonly WarnerMediaDbContext _context;
         private readonly IWarnerRepository _repository;
         private readonly ILogger<TitlesController> _logger;
         public TitlesController(IWarnerRepository repository, ILogger<TitlesController> logger)
@@ -35,15 +34,15 @@ namespace WarnerMediaWebApi.Controllers
         {
             try
             {
-                var lst = await _repository.GetAllTitles();
-                return Ok();
+                var allTitles = await _repository.GetAllTitles();
+                if (allTitles.Count == 0)  return NotFound();
+                else  return Ok(allTitles);
             }
             catch (Exception ex)
             {
                 _logger.LogError($"Failed to get Title: {ex}");
                 return BadRequest("failed to get Title");
-            }
-           
+            }           
         }
 
         // GET: api/Titles/5
@@ -56,26 +55,19 @@ namespace WarnerMediaWebApi.Controllers
             var title = await _repository.GetTitlesById(id);
             if (title == null) return NotFound();
             else return Ok(title);
-
         }
-        
+
+        //GET: api/search/All
         [HttpGet("search/{searchTerm}")]
         [ProducesResponseType(typeof(IReadOnlyCollection<TitlesDTO>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(StatusDTO), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(StatusDTO), StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetTitlesBySearchTerm(string searchTerm)
         {
-
             var title = await _repository.GetAllTitlesBySearchTerm(searchTerm);
-            if (title.Count == 0)
-            {
-                return NotFound();
-            }
-            return Ok(title);
-
+            if (title.Count == 0) return NotFound();
+            else   return Ok(title);
         }
-
-
 
     }
 }

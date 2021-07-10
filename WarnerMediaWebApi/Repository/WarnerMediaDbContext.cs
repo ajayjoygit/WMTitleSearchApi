@@ -14,8 +14,6 @@ namespace WarnerMediaWebApi.Models
         public DbSet<TitleGenre> TitleGenres { get; set; }
         public DbSet<TitleParticipant> TitleParticipants { get; set; }
         public DbSet<StoryLine> StoryLines { get; set; }
-                       
-
         public WarnerMediaDbContext(DbContextOptions<WarnerMediaDbContext> options) : base(options)
         {
         }

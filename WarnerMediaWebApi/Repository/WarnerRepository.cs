@@ -25,15 +25,12 @@ namespace WarnerMediaWebApi.Data
             {
                 try
                 {
-                    var listrt = new List<Title>();
-
-                    //might need to revisit
+                    var resultList = new List<Title>();
                     var searchList =   await _context.Titles.Where(p => p.TitleName.Contains(searchTerm))
-                                .OrderBy(q => q.TitleName.StartsWith(searchTerm)
-                                ? (q.TitleName == searchTerm ? 0 : 1)
-                               : 2)
-                            .Take(10)
-                            .ToListAsync();
+                                                            .OrderBy(q => q.TitleName.StartsWith(searchTerm)
+                                                            ? (q.TitleName == searchTerm ? 0 : 1)
+                                                            : 2)
+                                                           .ToListAsync();
 
                     if (searchList == null)
                     {
@@ -43,14 +40,14 @@ namespace WarnerMediaWebApi.Data
                     {
                         foreach (var item in searchList)
                         {
-                              listrt.Add(item);
+                            resultList.Add(item);
                         }
                     }
-                   return listrt;
+                   return resultList;
                 }
                 catch (Exception ex)
                 {
-                    _logger.LogError($"Failed to get all Products: {ex}");
+                    _logger.LogError($"Failed to get Titles: {ex}");
                     return null;
                 }
             }
@@ -58,16 +55,14 @@ namespace WarnerMediaWebApi.Data
             public async Task<Title> GetTitlesById(int titleId)
             {
                     return await _context.Titles
-                           .Where(p => p.TitleId == titleId)
-                           .FirstOrDefaultAsync();
+                                 .Where(p => p.TitleId == titleId)
+                                 .FirstOrDefaultAsync();
             }
 
             public async Task<IReadOnlyCollection<Title>> GetAllTitles()
             {
                     return await  _context.Titles
-                           .ToListAsync();
+                                  .ToListAsync();
             }
-
-            
-            }
+    }
 }
