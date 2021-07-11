@@ -52,6 +52,12 @@ namespace WarnerMediaWebApi
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseCors(x => x
+                    .AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader());
+            //added for cross orgin request angular 
+            
 
             app.UseAuthorization();
 
